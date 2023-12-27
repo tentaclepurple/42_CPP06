@@ -16,9 +16,6 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
-# include <cstdio>
-
-# include <cmath>
 # include <cstdlib>
 
 class	ScalarConverter
@@ -32,7 +29,7 @@ class	ScalarConverter
 		~ScalarConverter(void);
 
 
-		static void	convert(std::string input);
+		static void			convert(std::string input);
 		static void			toChar(std::string input);
 		static void			toInt(std::string input);
 		static void			toFloat(std::string input);
