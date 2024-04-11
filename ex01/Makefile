@@ -1,12 +1,12 @@
-NAME = serialize
+NAME = RPN
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g3 #-fsanitize=address
 
 CC = c++
 
 SRC_FILES = main.cpp \
-			Serialize.cpp
-			
+			RPN.cpp
+
 OBJS = $(SRC_FILES:.cpp=.o)
 
 #%.o: %.cpp
