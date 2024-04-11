@@ -1,60 +1,34 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imontero <imontero@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 17:45:20 by imontero          #+#    #+#             */
-/*   Updated: 2024/04/11 17:31:15 by imontero         ###   ########.fr       */
+/*   Created: 2023/12/27 09:01:57 by imontero          #+#    #+#             */
+/*   Updated: 2023/12/27 09:01:57 by imontero         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#include "RPN.hpp"
-#include <cctype>
+//#include "Serializer.hpp"
+//#include "seri.hpp"
+#include "Serialize.hpp"
 
-bool onlySpaces(const std::string& str)
+
+int	main()
 {
-    for (size_t i = 0; i < str.length(); ++i)
-        if (!isspace(str[i]))
-            return false;
-    return true; 
-}
+	Data test;
+	test.i = 42;
+	Data *ptr;
+	uintptr_t u;
 
-int	main(int argc, char **argv)
-{
-	if (argc != 2 ) return (std::cout << "Usage example: ./RPN \"2 3 + 4*\"" << std::endl, -1);
+	std::cout << "&test: " << &test << std::endl;
+	std::cout << "ptr: " << ptr << std::endl << std::endl;
 
-	std::string str(argv[1]);
-	
-	if (onlySpaces(str)) return (std::cout << "Usage example: ./RPN \"2 3 + 4*\" 🖕" << std::endl, -1);
+	u = Serializer::serialize(&test);
+	ptr = Serializer::deserialize(u);
+	std::cout << "ptr after: " << ptr << std::endl << std::endl;
 
-	RPN inst;
-	std::string check = "0123456789+-*/ ";
-	int i = 0;
-	while (str[i])
-	{
-		if (check.find(str[i]) == std::string::npos)
-		{
-			std::cout << "Error" << std::endl;
-			return (-1);
-		}
-		if (isdigit(str[i]))
-		{
-			if (str[i + 1] && str[i + 1] != ' ')
-			{
-				std::cout << "Error" << std::endl;
-				return (-1);
-			}
-			inst.pushNum(atoi(&str[i]));
-		}
-		else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/')
-		{
-			if (!inst.operation(str[i]))
-				return (-1);
-		}
-		i++;
-	}
-	std::cout << inst.topStack() << std::endl;
-	return (0);
+	std::cout << ptr->i << std::endl;
+	std::cout << &test << std::endl;
 }
