@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:04:02 by imontero          #+#    #+#             */
-/*   Updated: 2023/12/26 19:04:02 by imontero         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:59:18 by imontero         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "ScalarConverter.hpp"
 
@@ -76,17 +76,16 @@ void ScalarConverter::toChar(std::string input)
 	std::cout << "char: ";
 	try
 	{
-		if (std::isprint(static_cast<char>(std::atoi(input.c_str()))))
+		if (input.length() == 1 && !std::isdigit(input[0]) && std::isprint(input[0]))
+			std::cout << "'" << static_cast<char>(input[0]) << "'" << std::endl;
+		else if (std::isprint(static_cast<char>(std::atoi(input.c_str()))))
 			std::cout << "'" << static_cast<char>(std::atoi(input.c_str())) << "'" << std::endl;
 		else
 			std::cout << "Non displayable" << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		if (input.length() == 1 && std::isprint(input[0]))
-			std::cout << "'" << static_cast<char>(input[0]) << "'" << std::endl;
-		else
-			std::cout << "impossible" << std::endl;
+		std::cout << "impossible" << std::endl;
 	}
 }
 
