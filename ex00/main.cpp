@@ -5,30 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/23 18:26:07 by imontero          #+#    #+#             */
-/*   Updated: 2023/12/29 08:56:28 by imontero         ###   ########.fr       */
+/*   Created: 2023/12/28 12:10:55 by imontero          #+#    #+#             */
+/*   Updated: 2023/12/28 12:10:55 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "BitcoinExchange.hpp"
 
-
-int  main(int argc, char **argv)
+int main()
 {
-	if (argc != 2)
-	{
-		std::cout << "Wrong number of arguments" << std::endl;
-		return (1);
-	}
-	try
-	{
-		ScalarConverter::convert(argv[1]);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	
-	return (0);
-}
+	BitcoinExchange btc;
 
+	btc.calculateBalance("input.txt");
+	
+	return 0;
+}

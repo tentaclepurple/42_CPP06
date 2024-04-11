@@ -1,17 +1,16 @@
-NAME = conversions
+NAME = btc
 
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g3 #-fsanitize=address
 
 CC = c++
 
 SRC_FILES = main.cpp \
-			ScalarConverter.cpp
-			
-			
+			BitcoinExchange.cpp
+
 OBJS = $(SRC_FILES:.cpp=.o)
 
-%.o: %.cpp
-	@$(CC) $(FLAGS) -c $^ -o $@
+#%.o: %.cpp
+#	@$(CC) $(FLAGS) -c $^ -o $@
 
 CLR_RMV		:= \033[0m
 RED		    := \033[1;31m
